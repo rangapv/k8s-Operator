@@ -4,9 +4,6 @@ set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
 
 
-
-
-
 verifykey() {
 
 step1=`gpg --keyserver keyserver.ubuntu.com --recv-keys 052996E2A20B5C7E`
@@ -17,14 +14,14 @@ step3=`curl -LO ${NEWURL}/checksums.txt.asc`
 step3s="$?"
 step4=`gpg -u "Operator SDK (release) <cncf-operator-sdk@cncf.io>" --verify checksums.txt.asc`
 step4s="$?"
-step5=`grep operator-sdk_${OS}_${ARCH} checksums.txt | sha256sum -c -`
+step5=`grep operator-sdk_${os2}_${ARCH} checksums.txt | sha256sum -c -`
 step5s="$?"
 
 step6=`echo "$step5" | awk '{split($0,a,":"); print a[2]}'`
 
 if [[ $step6 = " OK" ]]
 then
-	chmod +x operator-sdk_${OS}_${ARCH} && sudo mv operator-sdk_${OS}_${ARCH} /usr/local/bin/operator-sdk
+	chmod +x operator-sdk_${os2}_${ARCH} && sudo mv operator-sdk_${os2}_${ARCH} /usr/local/bin/operator-sdk
 fi
 
 }
@@ -46,13 +43,12 @@ else
 fi
 NEWURL="$OPEURL$verop"
 
-dlope=`curl -LO ${NEWURL}/operator-sdk_${OS}_${ARCH}`
+dlope=`curl -LO ${NEWURL}/operator-sdk_${os2}_${ARCH}`
 dlopes="$?"
 if [[ ( $dlopes -eq 0 ) ]]
 then
 verifykey
 fi
 }
-
 
 githubrelease
