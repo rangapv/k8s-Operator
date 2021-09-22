@@ -4,16 +4,23 @@ Operator:
 
 Install Steps...
 
-Install Go
-Install Python
-Install Kubernetes
+* Install Go
+ -> repo goi
+* Install Python
+ -> repo ans
+* Install Kubernetes
+ -> repo metascript
+* Install kustomize
+  -> Kustomize installs:
 
-Install Operator-SDK:(Instead use the install.sh in this directory)
+  -> GOBIN=$(pwd)/ GO111MODULE=on go get sigs.k8s.io/kustomize/kustomize/v3
 
-Install from the Git Binary
+* Install Operator-SDK:(Instead use the install.sh in this directory)
+
+ -> Install from the Git Binary
    https://github.com/operator-framework/operator-sdk/releases
 
-Install with make
+ -> Install with make
 
    $ go get -d github.com/operator-framework/operator-sdk
    $ cd $GOPATH/src/github.com/operator-framework/operator-sdk
@@ -25,6 +32,7 @@ export PATH=$PATH:$(go env GOPATH)/bin
 
 export GOPATH=$(go env GOPATH)
 
+* Example operator1
 mkdir -p $GOPATH/src/operators1 && cd $GOPATH/src/operators1
 
 operator-sdk init
