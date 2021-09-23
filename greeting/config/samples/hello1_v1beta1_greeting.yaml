@@ -1,0 +1,7 @@
+apiVersion: hello1.my.domain/v1beta1
+kind: Greeting
+metadata:
+  name: greeting-sample
+spec:
+  # Add fields here
+  foo: bar
